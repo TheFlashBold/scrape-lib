@@ -1,0 +1,30 @@
+{
+    "urls": [
+        "https://geizhals.de/(.*)"
+    ],
+    "schema": {
+        "title": ".variant__header__headline",
+        "offers": {
+            "path": "#lazy-list--offers .offer",
+            "array": true,
+            "properties": {
+                "price": {
+                    "path": ".gh_price",
+                    "modifier": [
+                        "trim",
+                        "currency"
+                    ]
+                },
+                "store": {
+                    "path": ".gh_offerlist__merchant_logo",
+                    "attr": "title"
+                },
+                "link": {
+                    "path": ".gh_offerlist__offerurl",
+                    "attr": "href"
+                },
+                "availability": ".offer__delivery-time"
+            }
+        }
+    }
+}
