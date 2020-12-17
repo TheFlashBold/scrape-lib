@@ -1,0 +1,22 @@
+{
+    "urls": [
+        "https://news.ycombinator.com/news(.*)"
+    ],
+    "schema": {
+        "links": {
+            "path": ".itemlist > tbody > tr.athing",
+            "array": true,
+            "properties": {
+                "title": "td.title",
+                "link": {
+                    "path": "td.title > a",
+                    "attr": "href"
+                }
+            }
+        },
+        "more": {
+            "path": "a.morelink",
+            "attr": "href"
+        }
+    }
+}

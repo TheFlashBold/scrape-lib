@@ -33,11 +33,11 @@ class ScrapeLib {
 
     async loadPuppeteerPage(url) {
         if (!this._browser) {
-            this._browser = new puppeteer.launch({headless: true});
+            this._browser = await puppeteer.launch({headless: true});
         }
 
         const page = await this._browser.newPage();
-        await page.goto(url);
+        await page.goto(url, {waitUntil: "networkidle2"});
         return page;
     }
 
