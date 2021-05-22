@@ -1,0 +1,21 @@
+{
+    "urls": [
+        "https://www.bike-components.de/(.*)"
+    ],
+    "options": {
+    },
+    "schema": {
+        "title": ".name-product",
+        "variants": {
+            "path": "#module-product-detail > div:nth-child(3) > div.col-md-5.col-lg-4.options > div > div.product-options.js-site-init-functions > ul > li",
+            "array": true,
+            "properties": {
+                "name": ".option",
+                "availability": {
+                    "path": "i.icon",
+                    "attr": "class"
+                }
+            }
+        }
+    }
+}

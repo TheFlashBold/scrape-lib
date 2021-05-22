@@ -6,6 +6,13 @@ const Utils = require("./lib/Utils");
 
 puppeteer.use(StealthPlugin());
 
+const USER_AGENTS = {
+    default: "Googlebot/2.1 (+http://www.google.com/bot.html)",
+    mozilla: "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0",
+    chrome: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+    internetExplorer: "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)"
+};
+
 class ScrapeLib {
     _browser = null;
 
@@ -14,9 +21,14 @@ class ScrapeLib {
         return this.parseDoc(doc, schema);
     }
 
-    async loadPage(url, options) {
-        if (options.puppeteer) {
+    async loadPage(url, options = {}) {
+        const {puppeteer, userAgent} = options;
+        if (puppeteer) {
             const page = await this.loadPuppeteerPage(url);
+
+            if (USER_AGENTS[userAgent || "default"]) {
+                await page.setUserAgent(USER_AGENTS[userAgent || "default"]);
+            }
 
             if (options.scrollToBottom) {
                 await Utils.ScrollToBottom(page);
@@ -27,6 +39,7 @@ class ScrapeLib {
 
         return request({
             method: "GET",
+            headers: {"User-Agent": USER_AGENTS[userAgent || "default"]},
             url: url
         });
     }

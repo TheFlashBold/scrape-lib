@@ -1,0 +1,17 @@
+{
+    "urls": [
+        "https://www.amd.com/de/direct-buy/(.*)"
+    ],
+    "options": {
+        "puppeteer": true
+    },
+    "schema": {
+        "title": ".product-page-description > h2",
+        "price": {
+            "path": ".product-page-description > h4",
+            "modifier": ["currency"]
+        },
+        "outOfStock": "p.product-out-of-stock",
+        "addToCart": ".btn-shopping-cart"
+    }
+}

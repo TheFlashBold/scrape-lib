@@ -4,21 +4,6 @@
     ],
     "schema": {
         "title": "title",
-        "links": {
-            "path": "a",
-            "array": true,
-            "properties": {
-                "text": "",
-                "href": {
-                    "path": "",
-                    "attr": "href"
-                }
-            }
-        },
-        "images": {
-            "path": "img",
-            "array": true,
-            "attr": "src"
-        }
+        "headline": "h1"
     }
 }
